@@ -2,6 +2,7 @@ const express = require('express');
 const helmet = require("helmet");
 const ejs = require("ejs");
 const app = express();
+const db = require('./model/db');
 
 //보안 헬멧 추가
 app.use(helmet());
@@ -17,5 +18,7 @@ const mainRouter = require('./router/mainRouter')
 app.use('/',mainRouter)
 
 app.listen(3000, function(req, res){
+    //db 접속
+    db.sequelize.sync({force:false}); //나중에 다시 확인
     console.log("server lunched.");
 })
