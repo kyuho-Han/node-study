@@ -5,7 +5,7 @@ const app = express();
 const db = require('./model/db');
 
 //보안 헬멧 추가
-app.use(helmet());
+//app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded());
 

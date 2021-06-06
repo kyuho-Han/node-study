@@ -5,7 +5,7 @@ const db = require('../model/db');
 
 router.get("/", function(req,res){
 
-   res.render('index',{title:"EJS 메인 페이지"})
+   res.render('main',{title:"영화 리뷰 사이트"})
 })
 
 //회사소개 페이지
@@ -44,6 +44,22 @@ router.post("/data/delete",function(req,res){
     db.users.destroy({where:{user_id:target_id}}).then(function(result){
         res.send({success:200})
     })
+})
+
+router.post("/review/create", function(req,res){
+    let movie_id = req.body.movie_id;
+    let review = req.body.review;
+
+    if(movie_id == '' || movie_id == 0){
+        res.send({success:400})
+    }else{
+        db.reviews.create({
+            movie_id: movie_id,
+            review:review
+        }).then(function(result){
+            res.send({success:200})
+        })
+    }
 })
 
 module.exports = router //라우터 변수
