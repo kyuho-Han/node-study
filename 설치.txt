@@ -1,2 +1,22 @@
 npm install sequelize@5.22
 npm install mysql2
+
+npm install로 필요한 도구들 설치 후
+app.js에서 레고처럼 require로 필요한 도구들 불러오고
+
+set으로 엔진 설정 (ejs)
+views 폴더에 그림폴더들 들어있다고
+이미지 파일, css 파일들은 public 폴더에 들어있다고 설정
+
+sequelize로 db에 있는 데이터들을 꺼내 사용
+
+
+서버의 기능들은 mainRouter.js 에 있음
+주소들 적고 function으로 기능 구현
+
+POST 방식 -> body로 받음
+
+GET 방식 -> query로 받음
+
+db.js 
+Sequelize를 통해 설정
