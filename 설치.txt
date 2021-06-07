@@ -20,3 +20,12 @@ GET 방식 -> query로 받음
 
 db.js 
 Sequelize를 통해 설정
+
+
+Router -> mainRouter.js
+views -> 여러 폴더들
+model -> DB
+
+axios로 외부 페이지 몽땅 가져오고
+한글깨짐 방지는 iconv-lite
+html 데이터를 jquery처럼 사용하게 재가공하는 건 cheerio.load

@@ -2,6 +2,23 @@ const express = require('express');
 const router = express.Router();
 const db = require('../model/db');
 
+const cheerio = require("cheerio");
+const axios = require("axios");
+const iconv = require("iconv-lite");
+const url = "https://finance.naver.com/sise/lastsearch2.nhn"
+
+router.get("/crawling",function(req,res){
+
+    axios({url:url, method:"GET", responseType:"arraybuffer"}).then(function(html){
+        const content = iconv.decode(html.data, "EUC-KR").toString()
+        const $ = cheerio.load(content)
+        const h3 = $(".sub_tlt")
+        console.log(h3.text())
+
+        res.send({success:200})
+    })
+    
+})
 
 router.get("/", function(req,res){
    res.render('main',{title:"영화 리뷰 사이트"})
