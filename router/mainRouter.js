@@ -12,8 +12,11 @@ router.get("/crawling",function(req,res){
     axios({url:url, method:"GET", responseType:"arraybuffer"}).then(function(html){
         const content = iconv.decode(html.data, "EUC-KR").toString()
         const $ = cheerio.load(content)
-        const h3 = $(".sub_tlt")
-        console.log(h3.text())
+        
+        const table = $(".type_5 tr td")
+        table.each(function(i,tag){
+            console.log($(tag).text().trim())
+        })
 
         res.send({success:200})
     })
@@ -86,6 +89,14 @@ router.post("/data/delete",function(req,res){
     })
 })
 
+router.get("/excel",function(req,res){
+    res.render("excel")
+})
+
+router.get('/excel/down',function(req,res){
+    let excel_data = [{"A":1,"B":2,"C":3,"D":4}]
+    res.xls("data.xlsx",excel_data);
+})
 
 
 module.exports = router //라우터 변수

@@ -3,6 +3,7 @@ const helmet = require("helmet");
 const ejs = require("ejs");
 const app = express();
 const db = require('./model/db');
+const json2xls = require('json2xls');
 
 //보안 헬멧 추가
 //app.use(helmet());
@@ -22,3 +23,5 @@ app.listen(3000, function(req, res){
     db.sequelize.sync({force:false}); //나중에 다시 확인
     console.log("server lunched.");
 })
+
+app.use(json2xls.middleware);
